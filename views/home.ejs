@@ -1,0 +1,57 @@
+<!-- htmlhint spec-char-escape:false -->
+
+<!--
+This is our 'home' view.
+-->
+
+<!DOCTYPE html>
+
+<html>
+  
+<head>
+
+  <!--
+  This EJS tag evaluates and prints the statement following it
+  The 'include' statement allows us to insert content from other views (called partials) into this view.
+  
+  The 'head' partial, located at 'views/partials/head.ejs' has all of our JavaScript and CSS dependencies.
+  If you remove it, the site will look quite plain.
+  -->
+  
+  <%- include( 'partials/head' ); %>
+  
+</head>
+
+<body>
+  
+  <!--
+  The 'nav' partial contains our site's navigation bar
+  -->
+  
+	<%- include( 'partials/nav' ); %>
+	
+	<div class="content">
+    
+    <!--
+    The 'hero' partial contains the opening section of our homepage
+    -->
+	  
+    <%- include( 'partials/hero' ); %>
+
+    <!--
+    The 'features' partial contains a list of our app's features
+    -->
+    
+    <%- include( 'partials/features' ); %>
+		
+	</div>
+  
+  <!--
+  The 'footer' partial contains our site's footer. Don't forget to put your name in there :)
+  -->
+	
+  <%- include( 'partials/footer' ); %>
+	
+</body>
+
+</html>
