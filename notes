@@ -1,0 +1,64 @@
+e@ericwaldman.ca
+mike8804@gmail.com
+
+Outline
+
+-Introduce ourselves
+  -Ask questions to the class
+  -Who has done any programming?
+  -Who has made a website?
+  -Purpose?
+    -Get a job
+    -Become rich
+    -Make the next facebook
+    -Start a startup
+    -Curiosity
+    
+-Overview of workshop series
+  -Goals for the course
+  -What is a web app?
+  -How does the internet work?
+  -Front vs Backend
+    
+-Part 1: HTML
+  -introduce glitch
+  -give them the url: gomix.com/#!/project/sprinkle-sunshine
+  -explain remixing, how to reset if they get lost
+  -what is HTML
+  -intro-to-html.html
+  -(walk through plain HTML, no CSS)
+  -HTML exercise
+  
+-Part 2: CSS
+  -what is CSS
+  -(walk through CSS)
+  -intro-to-css.html
+  -CSS exercise
+  
+-Part 3: Introducing CatBnB
+  -Walk through home.html & home.css
+  
+-Part 4: JavaScript
+  -what is programming? What is JavaScript?
+      
+-Part 5: nodejs
+  -what is front-end and backend?
+  -what is nodejs?
+  -(walk through nodejs)
+  
+-Part 6: Express
+  -GET requests
+  -templating
+    - includes
+  -request parameters
+  
+-Part 7:
+  -forms
+  -POST requests
+    - request body
+  -query parameters
+  
+-Part 8: Browser scripting
+  -what is browser scripting?
+  -datepicker plugin
+  -RateYo plugin

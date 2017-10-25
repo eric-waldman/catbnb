@@ -1,0 +1,89 @@
+// There are a number of new concepts in this function:
+//    1) Declaring JavaScript functions
+//    2) jQuery and jQuery selectors
+//    3) jQuery objects vs native DOM elements, i.e. $('.no-listings') vs $('.no-listings')[0]
+//    4) style property
+//    5) display property and display modes (none, block, inline)
+//    6) jQuery :visible selector extension
+//    7) jQuery .length property
+//    8) falsiness of 0
+//    9) ternary ?: operator
+function showMessageIfNoListings() {
+  $('.no-listings')[0].style.display = $('.listings li:visible').length ? 'none' : 'block';
+}
+
+
+$(function () {
+    // hi mike
+    $.get('/database/listing', function(listings) {
+      
+        listings.forEach(function(l) {
+          $('.listings').append('<li data-category="' + l.category + '" data-price="' + l.price + '">' + 
+                                  '<img src="' + l.image + '">' + 
+                                  '<div class="details">' + 
+                                    '<h2>' + l.name + '</h2>' + 
+                                    '<h3>$' + l.price + ' per night</h3>' + 
+                                    '<p>' + l.description + '</p>' + 
+                                    '<div class="datepicker" data-booked="' + l.booked.join(',') + '" ></div>' + 
+                                  '</div>' + 
+                                '</li>');
+        });
+        
+        // http://www.spiceforms.com/blog/how-to-disable-dates-in-jquery-datepicker-a-short-guide/
+        // ^ How to disable dates
+        $('.datepicker').datepicker({
+          onSelect: function(date) {
+          }
+        });
+        
+        
+        
+        $('.listings').isotope({
+            itemSelector: 'li',
+            layoutMode: 'fitRows',
+            fitRows: {
+                gutter: 10
+            }
+        });
+        
+        // I've include js-cookie to easily get/set cookies
+        // https://github.com/js-cookie/js-cookie/tree/latest#readme
+        // Cookie.set('key', 'value')
+        // Cookie.get('key')
+      
+        $('.room-type :checkbox').change(function () {
+            $('.listings').isotope({
+                filter: function () {
+                    var category = $(this).data('category');
+                    return document.getElementById(category).checked;
+                }
+            });
+        });
+      
+        $('.price-range input').on('input', function() {
+            // This requires an explanation about truthiness in javascript, and the boolean operators.
+            var minPrice = document.getElementById('min-price').valueAsNumber || 0;
+            var maxPrice = document.getElementById('max-price').valueAsNumber;
+            
+            // Can't do "maxPrice || Infinity" if we want a maxPrice of 0 to work correctly
+            if (isNaN(maxPrice))
+              maxPrice = Infinity;
+        
+            if (minPrice > maxPrice) {
+                if (this.id == 'min-price')
+                    $('#max-price').val(maxPrice = minPrice);
+                else 
+                    $('#min-price').val(minPrice = maxPrice);
+            }
+            
+            $('.listings').isotope({
+              filter: function() {
+                var price = $(this).data('price');
+                return price >= minPrice && price <= maxPrice;
+              }
+            });
+        });
+        
+    });
+   
+});
